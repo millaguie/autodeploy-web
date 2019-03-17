@@ -1,0 +1,48 @@
+---
+
+- hosts: key_practicaweb
+  become: yes
+  tasks:
+  - name: Update all packages
+    apt:
+      name: "*"
+      state: latest
+      update_cache: true
+      force_apt_get: true
+
+  - name: Install dependencies
+    apt: 
+      force_apt_get: true
+      state: latest
+      update_cache: no
+      name: "{{ packages }}"
+    vars:
+      packages:
+      - apt-transport-https
+      - ca-certificates
+      - software-properties-common
+      - gnupg2
+
+  - name: "Add signing key from official docker repo"
+    apt_key:
+      url: https://download.docker.com/linux/debian/gpg
+      state: present
+
+  - name: "Add docker official repository for Debian Stretch"
+    apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/debian stretch stable
+      state: present
+    
+  - name: "Install docker-ce"
+    apt:
+      name: "docker-ce"
+      state: latest
+      update_cache: yes
+      force_apt_get: yes
+  
+  - name: "Install docker-compose"
+    apt:
+      name: "docker-compose"
+      state: latest
+      update_cache: no
+      force_apt_get: yes
