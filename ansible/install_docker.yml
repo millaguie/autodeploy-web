@@ -53,6 +53,10 @@
       dest: "/opt/webservice"
       directory_mode: yes
 
+  - name: "Create proxy-net network"
+    docker_network:
+      name: proxy-net
+
   - name: "Start docker service"
     docker_service:
       project_src: "/opt/webservice/Docker/"
