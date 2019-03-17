@@ -14,6 +14,9 @@ services:
       - certs:/etc/nginx/certs:ro
     networks:
       - proxy
+    depends_on:
+      - web
+
   proxy-adm:
     image: jwilder/docker-gen
     container_name: proxy-adm
@@ -71,7 +74,6 @@ services:
       LETSENCRYPT_EMAIL: javi@millaguie.net
     depends_on:
       - db
-      - letsencrypt
     links:
       - db
     restart: always
