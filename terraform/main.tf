@@ -23,7 +23,7 @@ module "security_group" {
 
 resource "aws_instance" "web" {
   ami = "ami-035c67e6a9ef8f024"
-  instance_type = "t1.micro"
+  instance_type = "t2.micro"
   vpc_security_group_ids      = ["${module.security_group.this_security_group_id}"]
   key_name = "practicaweb"
   tags {
