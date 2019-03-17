@@ -1,7 +1,7 @@
 version: '2'
 services:
   nginx-proxy:
-    image: nginx
+    image: really/nginx-modsecurity
     container_name: nginx-proxy
     ports:
       - "80:80"
@@ -12,6 +12,7 @@ services:
       - html:/usr/share/nginx/html
       - dhparam:/etc/nginx/dhparam
       - certs:/etc/nginx/certs:ro
+      - logs:/var/log/nginx
     networks:
       - proxy
     depends_on:
@@ -87,6 +88,8 @@ volumes:
   dhparam:
   certs:
   mariadb-data:
+  logs:
+
 networks:
   proxy:
     external:

@@ -59,5 +59,3 @@
       build: yes
     register: output
 
-  - debug:
-      var: output
