@@ -1,0 +1,15 @@
+#!/bin/sh
+# Needed env vars
+# * MYSQL_HOST
+# * MYSQL_PORT
+# * MYSQL_USER
+# * MYSQL_PASSWORD
+# * MYSQL_DB
+
+config_file="/var/www/html/config.php"
+
+sed -i "s/@HOST@/$MYSQL_HOST/g" $config_file
+sed -i "s/@PORTNUMBER@/$MYSQL_PORT/g" $config_file
+sed -i "s/@USUARIO@/$MYSQL_USER/g" $config_file
+sed -i "s/@PASSWORD@/$MYSQL_PASSWORD/g" $config_file
+sed -i "s/@BASEDEDATOS@/$MYSQL_DB/g" $config_file
