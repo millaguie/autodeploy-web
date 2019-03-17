@@ -13,6 +13,5 @@ RUN apk update && \
     rm -rf ProyectoUI1 && \
     apk del git
 
-
 RUN chown -R nobody:nobody /var/www/html
 USER nobody
